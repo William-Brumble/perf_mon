@@ -63,6 +63,7 @@ git clone https://github.com/William-Brumble/perf_mon.git
 ### Install the dependencies into a virtual environment.
 Windows:
 ```
+cd perf_mon/
 py -m venv venv
 .\venv\Scripts\activate
 pip install -r requirements.txt
@@ -70,6 +71,7 @@ pip install -r requirements.txt
 
 Linux:
 ```
+cd perf_mon/
 python3 -m venv venv
 source .\venv\bin\activate
 pip install -r requirements.txt
