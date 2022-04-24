@@ -12,8 +12,6 @@ Uses FILELOCK for ensuring only one instance is running: https://github.com/tox-
 Configurable rolling csv data and application log outputs.
 
 <br>
-<br>
-<br>
 
 Currently logs the following system and process resource utilization (non exhaustive list):
 ___
