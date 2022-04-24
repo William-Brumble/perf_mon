@@ -59,7 +59,7 @@ psutil==5.9.0
 
 ### Clone the application from GitHub.
 ```
-git clone git@github.com:William-Brumble/perf_mon.git
+git clone https://github.com/William-Brumble/perf_mon.git
 ```
 
 ### Install the dependencies into a virtual environment.
