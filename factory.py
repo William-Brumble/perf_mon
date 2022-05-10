@@ -118,7 +118,13 @@ class Factory(object):
         return csv_logger
 
     def _find_process(self, pName:str) -> Tuple[int, None]:
-        for proc in psutil.process_iter(['pid', 'name']):
-            if proc.info.get("name") == pName:
-                return proc.info.get("pid")
+        for proc in psutil.process_iter(["pid", "name"]):
+            try:
+                if pName in "\t".join(proc.cmdline()):
+                    return proc.info.get("pid")
+            except psutil.AccessDenied:
+                continue
         return None
+
+if __name__ == "__main__":
+    print("This module is not meant to be ran as main")

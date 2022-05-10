@@ -33,3 +33,7 @@ class StatsController(object):
             self.logger.log_error(f"Failed to get system statistics: {traceback.format_exc()}")
 
         return pDictionary
+
+if __name__ == "__main__":
+    print("This module is not meant to be ran as main")
+

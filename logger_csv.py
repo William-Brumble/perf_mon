@@ -31,6 +31,7 @@ class CsvLogger(object):
 
         self.app_logger = pApp_logger
         self.log_path = pPath + pName
+        print(self.log_path)
         self.logger = logging.getLogger("csv_logger")
         self.logger.setLevel(logging.INFO)
         self.handler = RotatingFileHandler(self.log_path, maxBytes=pMax_bytes, backupCount=pCount)

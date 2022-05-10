@@ -14,7 +14,7 @@ class DiskProcessStats(StatsAbc):
         self.io_counter_cache = {}
 
     def __str__(self) -> str:
-        return f"DISK Process Statistics Object ({self.process.name()})"
+        return f"DISK Process Statistics Object ({self.process.cmdline()})"
 
     def get_stats(self, pDictionary:dict) -> dict:
         """ Get disk process statistics. """
@@ -26,7 +26,7 @@ class DiskProcessStats(StatsAbc):
     def _get_disk_io_counters(self, pDictionary:dict) -> dict:
         # Get disk process io counters.
         try:
-            self.logger.log_info(f"- Getting system disk io counters from: ({self.process.name()}) process")
+            self.logger.log_info(f"- Getting system disk io counters from: ({self.process.cmdline()}) process")
             disk_io_counters = self.process.io_counters()
 
             # Read in the raw accumulated read/write bytes
@@ -57,7 +57,7 @@ class DiskProcessStats(StatsAbc):
             self.io_counter_cache[f"disk_write_bytes_process"] = cur_write_bytes
             self.io_counter_cache[f"disk_write_read_time"] = time.perf_counter()
         except:
-            self.logger.log_error(f"Failed to get process ({self.process.name()}) disk io counters: {traceback.format_exc()}")
+            self.logger.log_error(f"Failed to get process ({self.process.cmdline()}) disk io counters: {traceback.format_exc()}")
 
         return pDictionary
 

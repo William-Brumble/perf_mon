@@ -12,7 +12,7 @@ class MemProcessStats(StatsAbc):
         self.process = pProcess
 
     def __str__(self) -> str:
-        return f"MEMORY Process Statistics Object ({self.process.name()})"
+        return f"MEMORY Process Statistics Object ({self.process.cmdline()})"
 
     def get_stats(self, pDictionary:dict) -> dict:
         """ Get process memory statistics. """
@@ -28,8 +28,8 @@ class MemProcessStats(StatsAbc):
             with self.process.oneshot():
                 memory_percent = self.process.memory_percent(memtype="rss")
 
-            self.logger.log_info(f"- Getting memory usage percentage from: ({'rss'}) scope, ({self.process.name()}) process")
-            pDictionary[f"memory_percent_rss_process_({self.process.name()})"] = memory_percent
+            self.logger.log_info(f"- Getting memory usage percentage from: ({'rss'}) scope, ({self.process.cmdline()}) process")
+            pDictionary[f"memory_percent_rss_process_({self.process.cmdline()})"] = memory_percent
         except:
             self.logger.log_error(f"Failed to get process memory rss percentage: {traceback.format_exc()}")
 
@@ -41,8 +41,8 @@ class MemProcessStats(StatsAbc):
             with self.process.oneshot():
                 memory_percent = self.process.memory_percent(memtype="vms")
 
-            self.logger.log_info(f"- Getting memory usage percentage from: ({'vms'}) scope, ({self.process.name()}) process")
-            pDictionary[f"memory_percent_vms_process_({self.process.name()})"] = memory_percent
+            self.logger.log_info(f"- Getting memory usage percentage from: ({'vms'}) scope, ({self.process.cmdline()}) process")
+            pDictionary[f"memory_percent_vms_process_({self.process.cmdline()})"] = memory_percent
         except:
             self.logger.log_error(f"Failed to get process memory vms percentage: {traceback.format_exc()}")
 

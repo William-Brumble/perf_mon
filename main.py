@@ -4,7 +4,6 @@ import time
 from filelock import FileLock, Timeout
 
 from factory import Factory
-from logger_application import AppLogger
 
 def main():
 
@@ -29,10 +28,18 @@ def main():
     logger_data_max_bytes = int(config.get("data_logger", "max_bytes"))
     logger_data_num_files = int(config.get("data_logger", "num_files"))
 
+    paths = []
+    for s_name, p_name in config["paths"].items():
+        paths.append(p_name)
+
     processes = []
     for s_name, p_name in config["processes"].items():
         processes.append(p_name)
     # -------------------------------------------------------------------------
+
+    # Creating directories
+    # -------------------------------------------------------------------------
+    factory.create_directories(paths)
 
     # Creating application logger
     # -------------------------------------------------------------------------

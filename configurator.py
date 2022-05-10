@@ -3,7 +3,6 @@ from time import sleep
 from os import mkdir, remove
 from os.path import exists
 from configparser import ConfigParser
-
 class Configurator(ConfigParser):
 
     def __init__(self):
@@ -40,7 +39,6 @@ if __name__ == "__main__":
         configurator.set("filenames", "log_app", "app.log") # Application log output file name
 
         configurator.add_section("processes")
-        configurator.set("processes", "name", "System Idle Process")
         #configurator.set("processes", "name", "INSERT_NAME_HERE")
         #configurator.set("processes", "name", "INSERT_NAME_HERE")
         # ...
@@ -55,34 +53,3 @@ if __name__ == "__main__":
         configurator.set("data_logger", "num_files", "500") # Number of resource log files
 
         configurator.write_settings()
-    # -------------------------------------------------------------------------
-
-    # View the settings
-    # -------------------------------------------------------------------------
-    else: 
-        configurator = Configurator()
-
-        print("Main settings:")
-        for name, value in configurator["main"].items():
-            print(name + " : " + value)
-
-        print("Path settings:")
-        for name, value in configurator["paths"].items():
-            print(name + " : " + value)
-
-        print("Filename settings:")
-        for name, value in configurator["filenames"].items():
-            print(name + " : " + value)
-
-        print("Process settings:")
-        for name, value in configurator["processes"].items():
-            print(name + " : " + value)
-
-        print("App logger settings:")
-        for name, value in configurator["app_logger"].items():
-            print(name + " : " + value)
-
-        print("Data logger settings:")
-        for name, value in configurator["data_logger"].items():
-            print(name + " : " + value)
-    # -------------------------------------------------------------------------

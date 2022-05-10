@@ -32,7 +32,7 @@ class CpuProcessStats(StatsAbc):
                 self.logger.log_info(f"- Getting cpu times from: ({self.process.name()}) process, ({key}) scope")
                 pDictionary[f"cpu_times_({key})_process_({self.process.name()})"] = value
         except:
-            self.logger.log_error(f"Failed to get process ({self.process.name()}) cpu times: {traceback.format_exc()}")
+            self.logger.log_error(f"Failed to get process ({self.process.cmdline()}) cpu times: {traceback.format_exc()}")
 
         return pDictionary
 
@@ -42,10 +42,10 @@ class CpuProcessStats(StatsAbc):
             with self.process.oneshot():
                 cpu_percent = self.process.cpu_percent()
 
-            self.logger.log_info(f"- Getting cpu usage percentage from: ({self.process.name()}) process")
-            pDictionary[f"cpu_percent_process_({self.process.name()})"] = cpu_percent
+            self.logger.log_info(f"- Getting cpu usage percentage from: ({self.process.cmdline()}) process")
+            pDictionary[f"cpu_percent_process_({self.process.cmdline()})"] = cpu_percent
         except:
-            self.logger.log_error(f"Failed to get process ({self.process.name()}) cpu percentages: {traceback.format_exc()}")
+            self.logger.log_error(f"Failed to get process ({self.process.cmdline()}) cpu percentages: {traceback.format_exc()}")
 
         return pDictionary
 

@@ -47,3 +47,7 @@ class AppLogger(object):
             self.logger.error(pMessage.upper())
         except:
             sys.exit("Can not log error data, we are leaving now.")
+
+if __name__ == "__main__":
+    print("This module is not meant to be ran as main")
+
